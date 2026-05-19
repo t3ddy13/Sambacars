@@ -440,6 +440,8 @@ app.get('/detalhe', (req, res) => res.sendFile(path.join(__dirname, 'detalhe.htm
 app.get('/carrinho', (req, res) => res.sendFile(path.join(__dirname, 'carrinho.html')));
 app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'admin.html')));
 
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`sambacars a correr em http://localhost:${PORT}`);
 });
