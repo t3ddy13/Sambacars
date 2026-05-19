@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sambacarro - Concessionária em Angola</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="icon" href="imagens/Icon.ico" type="icon">
+</head>
+<body data-page="home">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Samba<span>Cars</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/" class="active">Início</a></li>
+        <li><a href="/carros">Carros</a></li>
+        <li><a href="/#contacto">Contacto</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="/admin">Admin</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="/carrinho" class="carrinho-icon" id="carrinho-icon-wrap" style="display:none;">
+          🛒
+          <span class="carrinho-badge" id="carrinho-badge">0</span>
+        </a>
+        <div id="cliente-info" style="display:none;">
+          <span id="cliente-name-display"></span>
+          <button class="btn-nav outline" onclick="logout()">Sair</button>
+        </div>
+        <button class="btn-nav outline" id="btn-login">Entrar</button>
+        <button class="btn-nav primary" id="btn-register">Registar</button>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">🇦🇴 Concessionária em Angola</div>
+        <h1>Encontre o seu<br>próximo <span>veículo</span><br>ideal</h1>
+        <p>Selecção cuidada de veículos de qualidade para o mercado angolano. Confiança, transparência e o melhor serviço de venda automóvel.</p>
+        <div class="hero-btns">
+          <a href="/carros" class="btn btn-primary btn-lg">Ver Todos os Carros</a>
+          <a href="/#contacto" class="btn btn-outline btn-lg">Falar Connosco</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Veículos Vendidos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">5⭐</span>
+            <span class="stat-label">Satisfação</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">5+</span>
+            <span class="stat-label">Anos no Mercado</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img-wrap">
+          <img src="imagens/imagem coiso.jpg" alt="Carro em destaque" onerror="this.parentElement.innerHTML='<div class=\'hero-img-placeholder\'><span class=\'icon\'>🚗</span><p>Adicione a imagem do hero</p></div>'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CARROS EM DESTAQUE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Carros em <span>Destaque</span></div>
+          <div class="section-sub">Os veículos mais procurados da nossa frota</div>
+        </div>
+        <a href="/carros" class="btn btn-outline">Ver Todos →</a>
+      </div>
+      <div class="carros-grid" id="featured-carros-grid">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE NÓS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Por que escolher a <span>sambacarro</span>?</div>
+          <div class="section-sub">O seu parceiro de confiança no mercado automóvel angolano</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;">
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:24px;">
+          <div style="font-size:2rem;margin-bottom:12px;">🔒</div>
+          <h3 style="color:var(--white);font-size:1rem;font-weight:700;margin-bottom:8px;">Compra Segura</h3>
+          <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;">Todas as transações são processadas de forma segura com registo completo da compra.</p>
+        </div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:24px;">
+          <div style="font-size:2rem;margin-bottom:12px;">🏆</div>
+          <h3 style="color:var(--white);font-size:1rem;font-weight:700;margin-bottom:8px;">Veículos Verificados</h3>
+          <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;">Cada carro passa por uma rigorosa inspecção antes de ser disponibilizado para venda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Fale <span>Connosco</span></div>
+          <div class="section-sub">Estamos aqui para responder a todas as suas questões</div>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>sambacarro Angola</h3>
+          <p>Somos uma concessionária de confiança dedicada a oferecer os melhores veículos para o mercado angolano, com atendimento personalizado e preços competitivos.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">📍</div>
+              <div class="contact-item-text">
+                <strong>Morada</strong>
+                <span> Rua Principal de Caxito, nº 245, frente ao mercado municipal Caxito, Bengo, Angola</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📞</div>
+              <div class="contact-item-text">
+                <strong>Telefone</strong>
+                <span>+244 922 692 797</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">✉️</div>
+              <div class="contact-item-text">
+                <strong>Email</strong>
+                <span>info@sambacarro.ao</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">🕐</div>
+              <div class="contact-item-text">
+                <strong>Horário</strong>
+                <span>Segunda a Sexta: 08h - 18h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form id="contact-form">
+            <div class="form-group">
+              <label>Nome Completo</label>
+              <input type="text" placeholder="O seu nome" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="" required>
+            </div>
+            <div class="form-group">
+              <label>Telefone</label>
+              <input type="tel" placeholder="" required>
+            </div>
+            <div class="form-group">
+              <label>Mensagem</label>
+              <textarea placeholder="Escreva a sua mensagem..." rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Enviar Mensagem</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Samba<span>Cars</span></h3>
+          <p>A sua concessionária de confiança em Angola. Qualidade, transparência e os melhores veículos do mercado.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="/carros">Todos os Carros</a></li>
+            <li><a href="/#contacto">Contacto</a></li>
+            <li><a href="/admin">Painel Admin</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="#">+244 922 692 797</a></li>
+            <li><a href="#">info@sambacarro.ao</a></li>
+            <li><a href="#">Luanda, Angola</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 sambacarro. Todos os direitos reservados.</p>
+        <p>Feito em Angola 🇦🇴</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="auth-overlay">
+    <div class="auth-modal">
+      <div class="auth-logo">Samba<span>Cars</span></div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Entrar</button>
+        <button class="auth-tab" data-tab="register">Criar Conta</button>
+      </div>
+
+      <!-- LOGIN -->
+      <form id="login-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="login-email" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label>Palavra-passe</label>
+          <input type="password" id="login-password" placeholder="" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px;">Entrar</button>
+      </form>
+
+      <!-- REGISTER -->
+      <form id="register-form" style="display:none;">
+        <div class="form-group">
+          <label>Nome Completo</label>
+          <input type="text" id="reg-name" placeholder="O seu nome" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="reg-email" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label>Palavra-passe</label>
+          <input type="password" id="reg-password" placeholder="" required>
+          
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Criar Conta</button>
+      </form>
+
+      <div style="text-align:center;margin-top:16px;">
+        <button class="btn btn-ghost btn-sm close-auth">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

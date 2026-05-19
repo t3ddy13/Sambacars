@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Veículo - sambacars</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body data-page="detalhe">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Samba<span>Cars</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/">Início</a></li>
+        <li><a href="/carros" class="active">Carros</a></li>
+        <li><a href="/#contacto">Contacto</a></li>
+        <li id="nav-admin-link" style="display:none;"><a href="/admin">Admin</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="/carrinho" class="carrinho-icon" id="carrinho-icon-wrap" style="display:none;">
+          🛒
+          <span class="carrinho-badge" id="carrinho-badge">0</span>
+        </a>
+        <div id="cliente-info" style="display:none;">
+          <span id="cliente-name-display"></span>
+          <button class="btn-nav outline" onclick="logout()">Sair</button>
+        </div>
+        <button class="btn-nav outline" id="btn-login">Entrar</button>
+        <button class="btn-nav primary" id="btn-register">Registar</button>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- DETALHE CONTENT -->
+  <section class="section" style="padding-top:96px;">
+    <div class="container">
+      <div id="detalhe-container">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Samba<span>Cars</span></h3>
+          <p>A sua concessionária de confiança em Angola.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="/carros">Carros</a></li>
+            <li><a href="/#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="#">+244 900 000 000</a></li>
+            <li><a href="#">info@sambacars.ao</a></li>
+            <li><a href="#">Luanda, Angola</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 sambacars. Todos os direitos reservados.</p>
+        <p>Feito em Angola 🇦🇴</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="auth-overlay">
+    <div class="auth-modal">
+      <div class="auth-logo">Samba<span>Cars</span></div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Entrar</button>
+        <button class="auth-tab" data-tab="register">Criar Conta</button>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="login-email" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label>Palavra-passe</label>
+          <input type="password" id="login-password" placeholder="" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Entrar</button>
+      </form>
+      <form id="register-form" style="display:none;">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" id="reg-name" placeholder="O seu nome" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="reg-email" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label>Palavra-passe</label>
+          
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Criar Conta</button>
+      </form>
+      <div style="text-align:center;margin-top:16px;">
+        <button class="btn btn-ghost btn-sm close-auth">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+  <script src="app.js"></script>
+</body>
+</html>

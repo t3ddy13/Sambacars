@@ -1,0 +1,264 @@
+===============================================================
+  sambacars - GUIA COMPLETO DE INSTALAÇÃO E IMAGENS
+  Concessionária de Automóveis - Angola
+===============================================================
+===============================================================
+  ESTRUTURA DE FICHEIROS
+===============================================================
+
+sambacars/
+├── index.html       → Página inicial (hero + carros em destaque + contacto)
+├── carros.html      → Lista completa de todos os carros com filtros
+├── detalhe.html     → Página de detalhes de um carro específico
+├── carrinho.html    → Carrinho de compras do utilizador
+├── admin.html       → Painel de administração (apenas admin)
+├── app.js           → Todo o JavaScript do frontend
+├── estilos.css      → Todos os estilos CSS
+├── server.js        → Servidor Node.js + Express + MySQL
+├── package.json     → Dependências do projeto
+└── instrucoes.txt   → Este ficheiro
+
+===============================================================
+  PASSO 1 - INSTALAR O MYSQL
+===============================================================
+
+1. Instale o MySQL Community Server (gratuito):
+   https://dev.mysql.com/downloads/mysql/
+
+2. Durante a instalação, defina uma password para o utilizador "root"
+   (ou deixe em branco, mas anote a escolha)
+
+3. Certifique-se que o MySQL está a correr antes de iniciar o servidor
+
+===============================================================
+  PASSO 2 - CONFIGURAR A LIGAÇÃO À BASE DE DADOS
+===============================================================
+
+Abra o ficheiro: server.js
+
+Encontre este bloco (perto do início):
+
+   const db = mysql.createConnection({
+     host: 'localhost',
+     cliente: 'root',
+     password: '', ← ALTERE AQUI para a sua password MySQL
+     database: 'sambacars',
+     multipleStatements: true
+   });
+
+Altere apenas o campo "password" para a sua password do MySQL.
+Exemplo: password: 'minhapassword123'
+
+A base de dados "sambacars" e todas as tabelas serão criadas
+AUTOMATICAMENTE quando iniciar o servidor pela primeira vez.
+
+===============================================================
+  PASSO 3 - INSTALAR DEPENDÊNCIAS E INICIAR
+===============================================================
+
+Abra o Terminal (Linha de Comandos / CMD) e navegue até à pasta sambacars:
+
+   cd caminho/para/sambacars
+
+Instale as dependências:
+
+   npm install
+
+Inicie o servidor:
+
+   npm start
+
+Aceda ao site no navegador:
+
+   http://localhost:3000
+
+===============================================================
+  CONTAS DE ACESSO PRÉ-CRIADAS
+===============================================================
+
+ADMINISTRADOR:
+  Email:    admin@sambacarro.ao
+  Password: admin123
+  Acesso:   Painel admin completo em http://localhost:3000/admin
+
+CLIENTE DEMO:
+  Email:    cliente@email.com
+  Password: cliente123
+  Acesso:   Compras e carrinho
+
+===============================================================
+  ONDE ESTÃO AS IMAGENS E COMO SUBSTITUÍ-LAS
+===============================================================
+
+As imagens no projecto estão definidas como <img src="">
+(src vazio = placeholder automático do sistema).
+
+Para adicionar imagens reais, tem 2 opções:
+
+--- OPÇÃO A: URL de uma imagem online ---
+
+No painel admin (admin.html), ao adicionar ou editar um carro,
+preencha o campo "URL da Imagem" com o link directo da imagem.
+Exemplo: https://www.exemplo.com/imagens/toyota-hilux.jpg
+
+--- OPÇÃO B: Imagens guardadas localmente ---
+
+1. Crie uma pasta chamada "imagens" dentro da pasta sambacars:
+   sambacars/
+   └── imagens/
+       ├── hero.jpg
+       ├── toyota-hilux.jpg
+       ├── land-cruiser.jpg
+       └── ...
+
+2. No painel admin, no campo "URL da Imagem", escreva o caminho:
+   imagens/toyota-hilux.jpg
+
+---------------------------------------------------------------
+IMAGEM DA PÁGINA INICIAL (HERO)
+---------------------------------------------------------------
+
+Localização: index.html, linha com:
+   <img src="" alt="Carro em destaque" ...>
+
+Como substituir:
+   1. Coloque a imagem na pasta imagens/
+   2. Abra index.html num editor de texto
+   3. Altere src="" para src="imagens/hero-carro.jpg"
+
+Tamanho recomendado: 800x600 pixels ou maior
+---------------------------------------------------------------
+IMAGENS DOS CARROS (LISTAGEM E DETALHES)
+---------------------------------------------------------------
+
+As imagens dos carros são geridas pela base de dados.
+Use o Painel Admin para adicionar/editar imagens de cada carro:
+
+   1. Aceda a http://localhost:3000/admin
+   2. Faça login com admin@sambacars.ao / admin123
+   3. Vá a "Gerir Carros"
+   4. Clique em "Editar" no carro que deseja
+   5. Preencha o campo "URL da Imagem"
+   6. Clique "Guardar Carro"
+
+A imagem aparecerá automaticamente em:
+   - carros.html (listagem de todos os carros)
+   - detalhe.html (página de detalhes do carro)
+   - carrinho.html (items no carrinho)
+   - admin.html (tabela de administração)
+
+---------------------------------------------------------------
+PÁGINAS E IMAGENS POR LOCALIZAÇÃO
+---------------------------------------------------------------
+
+index.html  → Imagem do hero (substituir no próprio HTML)
+              Imagens dos carros em destaque (via base de dados)
+
+carros.html → Imagens dos carros (via base de dados)
+
+detalhe.html → Imagem grande do carro (via base de dados)
+
+carrinho.html → Miniatura do carro (via base de dados)
+
+admin.html → Sem imagens de carros (apenas tabela de texto)
+
+===============================================================
+  ESTRUTURA DA BASE DE DADOS (criada automaticamente)
+===============================================================
+
+Base de dados: sambacars
+
+Tabelas:
+  cliente     → Utilizadores registados (id, name, email, password, role)
+  carros      → Inventário de carros (id, brand, model, year, price, ...)
+  compras → Histórico de compras (id, cliente_id, car_id, total_price, ...)
+  carrinho      → Carrinho de compras (id, cliente_id, car_id)
+
+===============================================================
+  FUNCIONALIDADES DO SISTEMA
+===============================================================
+
+PÁGINA INICIAL (index.html)
+  - Navbar com login/registo
+  - Secção hero com imagem principal
+  - Carros em destaque (da base de dados)
+  - Secção "Porquê nós"
+  - Secção de contacto com formulário
+  - Rodapé
+
+CARROS (carros.html)
+  - Lista todos os carros da base de dados
+  - Filtros por marca, combustível, transmissão e preço
+  - Pesquisa por texto
+  - Botão para adicionar ao carrinho
+  - Botão para ver detalhes
+
+DETALHE (detalhe.html)
+  - Imagem grande do carro
+  - Todos os detalhes: ano, cor, km, combustível, transmissão
+  - Descrição completa
+  - Botão "Adicionar ao Carrinho"
+  - Botão "Comprar Agora" (compra directa)
+
+CARRINHO (carrinho.html)
+  - Lista de carros no carrinho do utilizador
+  - Resumo com total
+  - Botão para comprar cada item individualmente
+  - Botão para comprar tudo de uma vez
+  - Botão para remover items
+
+ADMIN (admin.html) - Apenas para administradores
+  - Dashboard com estatísticas (carros, clientes, compras, receita)
+  - Gestão de carros: adicionar, editar, eliminar
+  - Histórico completo de todas as compras
+  - Lista de todos os utilizadores registados
+
+===============================================================
+  ERROS COMUNS E SOLUÇÕES
+===============================================================
+
+ERRO: "Cannot connect to MySQL"
+  SOLUÇÃO: Verifique se o MySQL está a correr e se a password
+           em server.js está correcta
+
+ERRO: "Port 3000 already in use"
+  SOLUÇÃO: Mude o PORT no server.js para outro número (ex: 3001)
+           ou encerre o programa que está a usar a porta 3000
+
+ERRO: "Cannot find module"
+  SOLUÇÃO: Execute "npm install" novamente na pasta do projecto
+
+PÁGINA EM BRANCO no admin
+  SOLUÇÃO: Certifique-se que fez login com a conta de administrador
+           (admin@sambacars.ao / admin123)
+
+===============================================================
+  PERSONALIZAÇÃO
+===============================================================
+
+Para alterar o nome da concessionária:
+  - Substitua "sambacars" em todos os ficheiros HTML
+
+Para alterar as informações de contacto:
+  - Edite a secção #contacto em index.html
+
+Para alterar as cores do site:
+  - Abra estilos.css e edite as variáveis no início:
+    --navy: (cor de fundo principal)
+    --accent: (cor de destaque/azul)
+    --text: (cor do texto)
+
+Para adicionar novas marcas de carros nos filtros:
+  - Edite carros.html e adicione <option> na select #filter-brand
+
+===============================================================
+  SUPORTE
+===============================================================
+
+Este projecto foi desenvolvido para funcionar imediatamente
+após instalação das dependências e configuração do MySQL.
+
+Todos os dados de exemplo (carros e utilizadores) são criados
+automaticamente na primeira execução do servidor.
+
+===============================================================
